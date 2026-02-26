@@ -1,16 +1,9 @@
-[workspace]
-members = [
-    "reusable-library-001-project-framework-core",
-    "reusable-library-001-project-framework-api",
-    "reusable-library-001-project-framework-grpc",
-]
-resolver = "2"
-
-[workspace.package]
+[package]
+name = "reusable-library-001-project-framework-core"
 version = "0.1.0"
 edition = "2021"
 
-[workspace.dependencies]
+[dependencies]
 tokio = { version = "1.0", features = ["full"] }
 serde = { version = "1.0", features = ["derive"] }
 clap = { version = "4.0", features = ["derive"] }
@@ -20,3 +13,7 @@ tracing-subscriber = "0.3"
 serde_json = "1.0"
 thiserror = "1.0"
 async-trait = "0.1"
+
+[dev-dependencies]
+tokio-test = "0.4"
+mockall = "0.11"

@@ -27,6 +27,9 @@ Start simple, YAGNI principles; All abstractions must be justified by clear use 
 ### VIII. Monorepo with Independent Subprojects
 Projects are organized in a monorepo structure to enable easy refactoring and separation of independent modules; Each subproject can independently use different programming languages (e.g., SDK can have Python and Java implementations); Subprojects must be independently buildable, testable, and deployable while maintaining monorepo benefits; Cross-language communication must be abstracted through standardized interfaces; Shared libraries and components can be reused across subprojects
 
+### IX. Folder Naming Convention Alignment
+Folder naming must align with the root project name using subproject prefixes similar to Java conventions; Each subproject directory must be prefixed with the root project name followed by a hyphen and a sequential number (e.g., "playground-sdd-001-reusable-library"); This ensures consistent naming across the monorepo and facilitates easier navigation and organization of subprojects
+
 ## Additional Constraints
 
 ### Technology Stack Requirements
@@ -73,5 +76,5 @@ Versioning follows semantic versioning rules:
 ### Compliance Review
 All PRs must verify compliance with the constitution; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance; Regular compliance reviews are conducted quarterly
 
-**Version**: 1.1.0 | **Ratified**: 2026-02-25 | **Last Amended**: 2026-02-25
+**Version**: 1.2.0 | **Ratified**: 2026-02-25 | **Last Amended**: 2026-02-26
 <!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->

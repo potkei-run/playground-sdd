@@ -1,30 +1,20 @@
-//! Main entry point for the reusable library framework.
+//! Main entry point for the reusable-library-001-project-framework-core
+//!
+//! This binary initializes and runs the core framework components.
 
-use reusable_library::prelude::*;
+use reusable_library_001_project_framework_core::init;
 
-fn main() {
-    println!("Reusable Library Framework v{}", reusable_library::VERSION);
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    tracing_subscriber::fmt::init();
 
-    // Example usage of the framework
-    let config = ContainerConfig {
-        auto_scan: true,
-        scan_paths: vec!["src".to_string()],
-        default_scope: Scope::Singleton,
-        enable_caching: true,
-    };
+    init()?;
 
-    let container = DiContainerImpl::new(config);
+    tracing::info!("Core framework running");
 
-    // Create a simple module
-    let module = LibraryModule::new(
-        "example-module".to_string(),
-        "Example Module".to_string(),
-        "1.0.0".to_string(),
-        "An example module".to_string(),
-        vec![],
-        ModuleType::Core,
-    );
+    // Keep the application running
+    tokio::signal::ctrl_c().await?;
 
-    println!("Created module: {}", module.name());
-    println!("Module status: {:?}", module.status());
+    tracing::info!("Shutting down framework");
+    Ok(())
 }

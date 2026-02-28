@@ -114,4 +114,9 @@ pub struct ValidationRules {
     pub types: HashMap<String, String>,
 }
 
+/// Initialize configuration manager
+pub fn init() {
+    tracing::info!("Initializing configuration manager");
+}
+
 pub mod tests;

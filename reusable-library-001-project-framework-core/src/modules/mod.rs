@@ -1,4 +1,4 @@
-//! Core module definitions and traits for the reusable library framework.
+//! Module management for the framework.
 
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -53,6 +53,16 @@ pub struct ModuleConfig {
     pub features: FeatureFlags,
 }
 
+impl Default for ModuleConfig {
+    fn default() -> Self {
+        Self {
+            settings: HashMap::new(),
+            environments: HashMap::new(),
+            features: FeatureFlags::default(),
+        }
+    }
+}
+
 /// Feature flags for module capabilities
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct FeatureFlags {
@@ -60,6 +70,17 @@ pub struct FeatureFlags {
     pub version: String,
     pub features: HashMap<String, bool>,
     pub restrictions: HashMap<String, FeatureRestriction>,
+}
+
+impl Default for FeatureFlags {
+    fn default() -> Self {
+        Self {
+            enabled: true,
+            version: "1.0.0".to_string(),
+            features: HashMap::new(),
+            restrictions: HashMap::new(),
+        }
+    }
 }
 
 /// Feature restriction configuration
@@ -107,3 +128,27 @@ pub enum ModuleStatus {
 
 pub mod library_module;
 pub use library_module::LibraryModule;
+
+/// Initialize modules
+pub fn init() {
+    tracing::info!("Initializing modules");
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_module_config_defaults() {
+        let config = ModuleConfig::default();
+        assert_eq!(config.features.enabled, true);
+        assert_eq!(config.features.version, "1.0.0");
+    }
+
+    #[test]
+    fn test_feature_flags_defaults() {
+        let flags = FeatureFlags::default();
+        assert_eq!(flags.enabled, true);
+        assert_eq!(flags.version, "1.0.0");
+    }
+}

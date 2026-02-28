@@ -1,23 +1,46 @@
-# Reusable Library - Project Framework Core
+# reusable-library-001-project-framework-core
 
-This is the core framework component of the reusable library project framework. It provides the foundational building blocks for creating modular applications with dependency injection, configuration management, and module lifecycle management.
+Core framework implementation for the project framework update.
+
+This subproject provides the foundational components for the framework, including:
+- Dependency injection container
+- Configuration management
+- Module lifecycle management
+- Core utilities and helpers
+
+## Structure
+
+```
+reusable-library-001-project-framework-core/
+├── src/
+│   ├── lib.rs
+│   ├── main.rs
+│   ├── config/
+│   ├── di/
+│   ├── modules/
+│   └── utils/
+├── tests/
+├── Cargo.toml
+└── README.md
+```
 
 ## Features
 
 - Dependency Injection Container
 - Configuration Management
 - Module Lifecycle Management
-- Common Utilities
+- Test-First Approach
+- Backward Compatibility Maintenance
 
 ## Usage
 
-Add this to your `Cargo.toml`:
+```bash
+# Run tests
+cargo test
 
-```toml
-[dependencies]
-reusable-library-001-project-framework-core = "0.1.0"
+# Check code formatting
+cargo fmt --check
+
+# Validate dependencies
+cargo check
 ```
-
-## Documentation
-
-See the [full documentation](https://docs.rs/reusable-library-001-project-framework-core) for more details.

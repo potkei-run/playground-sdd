@@ -1,22 +1,35 @@
-# Reusable Library - Project Framework API
+# reusable-library-001-project-framework-api
 
-This subproject provides API protocol implementations for the reusable library project framework.
+API protocol implementation for the project framework update.
+
+This subproject provides the REST API protocol abstraction for the framework, built on top of the core framework components.
+
+## Structure
+
+```
+reusable-library-001-project-framework-api/
+├── src/
+│   └── api.rs
+├── Cargo.toml
+└── README.md
+```
 
 ## Features
 
-- REST API endpoint definitions
-- API protocol abstractions
-- HTTP request/response handling
+- REST API Protocol Abstraction
+- Integration with Core Framework
+- Test-First Approach
+- Backward Compatibility Maintenance
 
 ## Usage
 
-Add this to your `Cargo.toml`:
+```bash
+# Run tests
+cargo test
 
-```toml
-[dependencies]
-reusable-library-001-project-framework-api = "0.1.0"
+# Check code formatting
+cargo fmt --check
+
+# Validate dependencies
+cargo check
 ```
-
-## Documentation
-
-See the [full documentation](https://docs.rs/reusable-library-001-project-framework-api) for more details.

@@ -1,6 +1,5 @@
 //! Dependency injection container for the reusable library framework.
 
-use std::collections::HashMap;
 use std::any::Any;
 use serde::{Deserialize, Serialize};
 use anyhow::Result;
@@ -38,9 +37,10 @@ pub trait DiContainer {
 }
 
 /// Component scope enumeration
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub enum Scope {
     /// Transient - new instance each time
+    #[default]
     Transient,
 
     /// Singleton - single instance for entire application
@@ -51,7 +51,7 @@ pub enum Scope {
 }
 
 /// Container configuration
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct ContainerConfig {
     /// Auto-scan for components
     pub auto_scan: bool,

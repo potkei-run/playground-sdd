@@ -1,30 +1,46 @@
-//! Reusable library framework for building modular applications.
+//! Core framework implementation for the project framework update.
 //!
-//! This crate provides a foundation for building reusable, modular applications
-//! with dependency injection, configuration management, and module lifecycle management.
+//! This module provides the foundational components for the framework, including:
+//! - Dependency injection container
+//! - Configuration management
+//! - Module lifecycle management
+//! - Core utilities and helpers
 
-// Declare modules
-mod modules;
-mod di;
-mod config;
-mod utils;
+#![deny(clippy::all)]
+#![deny(clippy::pedantic)]
+#![deny(clippy::nursery)]
 
-// Re-export core modules
-pub use modules::*;
-pub use di::*;
-pub use config::*;
-pub use utils::*;
+pub mod config;
+pub mod di;
+pub mod modules;
+pub mod utils;
 
-// Re-export common types
-pub use serde_json::Value;
+/// Main framework entry point
+pub fn init() -> Result<(), Box<dyn std::error::Error>> {
+    // Initialize core framework components
+    tracing::info!("Initializing reusable-library-001-project-framework-core");
 
-/// Main library entry point
-pub mod prelude {
-    pub use crate::modules::*;
-    pub use crate::di::*;
-    pub use crate::config::*;
-    pub use crate::utils::*;
+    // Initialize dependency injection container
+    // Note: The container doesn't have an init function in this implementation
+    // We'll just create a new instance instead
+    let container_config = crate::di::ContainerConfig::default();
+    let _container = crate::di::DiContainerImpl::new(container_config);
+
+    // Initialize configuration
+    // Note: The config module doesn't have an init function in this implementation
+    // We'll just call the init function we added
+    crate::config::init();
+
+    tracing::info!("Framework initialized successfully");
+    Ok(())
 }
 
-/// Library version
-pub const VERSION: &str = "0.1.0";
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_framework_init() {
+        assert!(init().is_ok());
+    }
+}
